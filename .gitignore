@@ -1,0 +1,6 @@
+/target
+/NotAlterra_Backups
+/samples
+*.log
+config.ini
+.deepseek
