@@ -4,4 +4,6 @@
 *.log
 config.ini
 .deepseek
+*.tar.gz
+*.zip
 
