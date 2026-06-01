@@ -14,3 +14,4 @@ notalterra
 /.cargo/
 /APPLICATION.md
 /build_sign.sh
+src/*.replace.py
