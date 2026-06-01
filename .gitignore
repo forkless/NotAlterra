@@ -4,8 +4,7 @@
 *.log
 config.ini
 .deepseek
-*.tar.gz
-*.zip
+/builds/
 
 _search_save_type.py
 notalterra-linux
