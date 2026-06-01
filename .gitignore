@@ -13,3 +13,4 @@ notalterra
 /tests/
 /.cargo/
 /APPLICATION.md
+/build_sign.sh
