@@ -11,3 +11,4 @@ notalterra-linux
 notalterra-windows.exe
 notalterra
 /tests/
+/.cargo/
