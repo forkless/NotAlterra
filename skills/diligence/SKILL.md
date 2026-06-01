@@ -7,7 +7,7 @@ description: Verification checklist for code changes — always run before claim
 
 Before reporting any task as complete, verify:
 
-1. **Doc coverage** — run `python3 _check.py` to confirm zero undocumented functions.
+1. **Doc coverage** — run `python3 tests/_check.py` to confirm zero undocumented functions.
 2. **Compilation** — `cargo check --workspace` must pass with no errors.
 3. **Git status** — no uncommitted changes unless intentionally deferred.
 4. **Remote parity** — `git log --oneline -1` matches `origin/master`.
