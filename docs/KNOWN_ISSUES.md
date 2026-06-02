@@ -1,11 +1,13 @@
 # Known Issues
 
-## config.ini persistence (privacy)
+## config.ini persists the save path
 
-`config.ini` caches the save-folder path including the Windows username on disk. Paths are sanitized in logs, but the raw path remains in the config file.
+`config.ini` caches the save-folder path on disk (next to the binary). Paths are sanitized in transaction logs, but the raw path remains in the config file for re-use across sessions.
 
-**Planned**: Remove `config.ini` entirely. Auto-discover by default, prompt for manual path entry at runtime if discovery fails. v0.3.0 target.
+**Planned**: Remove `config.ini` entirely in a future release. The path would be re-requested from the user on each session. v0.3.0 target.
 
-## No manual path override UI
+## Discovery module is deprecated
 
-Users who cannot auto-detect save locations have no way to manually specify a path. This will be resolved alongside the config.ini phase-out with a runtime input prompt.
+Auto-scan for save folders (`discovery.rs`) is deprecated — it scans user profiles and system directories for Subnautica 2 saves, which is a privacy concern. The `Locate save files` menu item shows a deprecation notice once per session.
+
+**Planned**: Remove `discovery.rs` entirely in v0.3.0. Users will enter their save path manually via `Set save folder`.
