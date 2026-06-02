@@ -4,6 +4,9 @@
 /samples
 *.log
 config.ini
+/backups/
+/logs/
+NotAlterra_LICENSE_ACCEPTED
 .deepseek
 /builds/
 
