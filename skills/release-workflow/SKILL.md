@@ -35,6 +35,7 @@ Before signing a release tag:
 
 After CI completes:
 
+- [ ] Check CI runs: two runs (force-push + tag) is normal; three or more means a stale orphan from a previous cycle — cancel or ignore the orphan
 - [ ] Download draft binaries from the releases page
 - [ ] Test on target platform — basic workflow, key features
 - [ ] Click **Publish release** on the hosting platform when satisfied
