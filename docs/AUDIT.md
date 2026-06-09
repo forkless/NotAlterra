@@ -35,9 +35,12 @@ This feature may be re-introduced in a future release provided it does not trigg
 
 All file writes are confined to declared paths:
 
-- `config.ini` — save-path cache, scan timestamp, disclaimer flag
-- `NotAlterra_Backups/` — backup archives
-- `transaction.log` — timestamped action log
+- `app.ini` (under `data_local_dir/NotAlterra/config/`) — save-folder and
+  backup-root paths
+- `backups/saves/`, `backups/ue5/` (under the backup root) — backup
+  archives
+- `logs/transaction.log` (under `data_local_dir/NotAlterra/logs/`) —
+  timestamped action log
 
 No writes outside these directories.  No reads beyond the Subnautica 2
 Saved folder tree.
