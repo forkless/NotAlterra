@@ -77,6 +77,10 @@ welcome.  Patience is appreciated.  Kindness is non-negotiable.
 CI now creates releases as drafts — binaries are built and uploaded but
 not published. The maintainer tests the draft binaries before publishing.
 
+> SLSA provenance attestation is generated automatically for every
+> tagged release. The `.intoto.jsonl` file is included with the
+> binaries. No configuration needed.
+
 Before signing a release tag, the maintainer verifies:
 
 - [ ] Impact analysis completed — all call sites for new/changed functions identified and updated
