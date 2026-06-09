@@ -42,10 +42,11 @@ After CI completes:
 ## Signing & Push
 
 - Commit with `--no-gpg-sign` (avoids GPG passphrase hang in non-interactive terminals)
-- Maintainer amends with `--gpg-sign` before push
+- **Sign once.** Wait for CI to go green on the unsigned commit, **then** amend with `--gpg-sign` + force-push. Do not amend between CI runs — each amend creates a new SHA, which triggers a new CI run and leaves stale Pages deployments that block the next run.
 - Normal push for fast-forward commits
 - `--force-with-lease` for amended commits or tag refreshes
 - If force-pushing, delete old tag and re-tag after the new commit lands
+- Tag once, push once. Re-signing an existing tag pushes a new SHA and triggers another CI run with the same deployment conflict risk.
 
 ## Release Notes
 
