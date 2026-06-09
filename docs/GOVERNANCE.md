@@ -99,9 +99,9 @@ Planned changes for upcoming releases, ordered by priority.
 | Target | Item |
 |--------|------|
 | v0.4.0 | ✅ All v0.4.0 items completed — released 2026-06-03 |
+| v0.4.1 | ✅ Persistent app config, backup location picker, split-layout metadata, security docs, pip menus — released 2026-06-09 |
 | v0.5.0 | CLI flags: `--backup`, `--extract <archive>`, `--inspect <savefile>` (`.sav`/`.bak`), `--list` |
-| v0.5.0 | Add migration notification dialog on startup (user sees old backups converted, old files untouched) |
-| v0.5.0 | Move existing `transaction.log` into `logs/` directory on first launch |
+| v0.5.0 | Migration notification dialog on startup (user sees old backups converted, old files untouched) |
 
 Items may shift between releases depending on feedback and urgency.
 

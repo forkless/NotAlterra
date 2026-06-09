@@ -55,7 +55,7 @@ triggers the issue.
 
 ### Affected versions
 
-- NotAlterra version(s): (e.g. v0.4.0)
+- NotAlterra version(s): (e.g. v0.4.1)
 - Platform: (Windows / Linux / both)
 
 ### Impact assessment

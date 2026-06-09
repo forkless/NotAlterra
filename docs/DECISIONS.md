@@ -110,3 +110,107 @@ does not require decompressing the entire archive.
 Existing `NotAlterra_Backups/` directory-tree backups are detected and
 transparently imported on first run after upgrade. No manual migration
 required.
+
+---
+
+## GVAS Heuristic Parser vs Structural Walker (v0.4.0)
+
+### Problem
+The GVAS save-file parser in `src/gvas.rs` uses byte-scanning to find
+property names as raw string patterns. It does not walk the full UE5 GVAS
+schema tree. This means:
+
+- Properties the scanner isn't written to look for are silently skipped
+- Byte sequences that happen to match a property name can produce false
+  positives (mitigated by validating the preceding length field)
+- Overall GVAS structure (header magic, version, property ordering) is not
+  validated
+
+The GVAS format is defined by the public Unreal Engine 5 source code — the
+SaveGame system and its binary serialization are part of the engine's
+open API.
+
+### Decision
+Keep the heuristic byte-scan parser. Marked as Won't fix.
+
+### Rationale
+
+**No published schema** — Unknown Worlds does not publish the GVAS property
+layout for Subnautica 2. A structural walker would require reverse-
+engineering the full property type system without ground truth.
+
+**No user-facing benefit** — the tool reads six properties (SlotName,
+DisplayName, bIsMultiplayerSave, playtime, etc.) for display purposes. The
+byte-scan finds all of them reliably on known save files. A structural
+walker would produce the same output.
+
+**Graceful degradation** — when the scanner cannot find a property, the
+picker falls back to the filename. The tool never crashes or presents
+incorrect data.
+
+**Fuzz coverage** — three fuzz targets (`parse_gvas`, `full_metadata`,
+`backup_roundtrip`) verify the parser does not panic on adversarial input.
+If a future game update changes the binary layout, fuzzing will catch it.
+
+---
+
+## Dead-Code Cleanup (v0.4.0)
+
+### Problem
+`src/main.rs` had `#![allow(dead_code)]` at the crate level, silencing
+compiler warnings for four unused functions. This prevented the compiler
+from flagging real dead code.
+
+### Decision
+Remove `_game_running_windows()` and `_backup_root()`. Retain
+`_game_running_linux()` and `available_space()` for planned future use.
+
+### Rationale
+
+**Removed:**
+- `_game_running_windows()` — process detection via `tasklist` was
+  intentionally disabled across the project to avoid Windows Defender
+  false positives (Trojan:Win32/Wacatac.C!ml). The startup reminder modal
+  is the replacement. No plan to re-enable.
+- `_backup_root()` — returned the legacy `NotAlterra_Backups/` path,
+  replaced by `backups/saves/` and `backups/config/` in v0.4.0.
+
+**Retained (each with its own `#[allow(dead_code)]`):**
+- `_game_running_linux()` — kept for possible opt-in process detection
+  on Linux where AV false positives are not a concern.
+- `available_space()` — kept for a planned disk-space warning before
+  backup operations.
+
+---
+
+## Persistent app.ini vs Session-Only Paths (v0.4.1)
+
+### Problem
+Save-folder and backup-root paths were session-only — re-entered each
+time the tool launched. This was a deliberate privacy choice (v0.3.2),
+but in practice users expected paths to persist between sessions.
+
+### Decision
+Persist both paths to `app.ini` under the platform config directory
+(`data_local_dir/NotAlterra/config/`). Backup data stays in
+`~/NotAlterra/backups/` (user-facing, not in AppData).
+
+### Rationale
+
+**Usability** — re-entering paths every session was friction with no
+real privacy benefit. The paths already existed on the user's filesystem;
+persisting them simply saves keystrokes.
+
+**Transparency, not silence** — instead of claiming "no data stored,"
+the documentation now accurately describes what is stored (save-folder
+and backup-root paths, which may contain the system username), why
+(minimal convenience data), and that it never leaves the machine.
+
+**Platform standards** — config goes to the OS-designated config
+directory (`AppData/Local` on Windows, `~/.local/share` on Linux).
+User-facing backup data stays in the home directory where users expect
+to find it. This separation is standard convention.
+
+**Plain text, user-controlled** — `app.ini` is a simple key=value file.
+Users can inspect or delete it at any time. No binary format, no
+registry, no opaque storage.

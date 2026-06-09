@@ -4,10 +4,11 @@ Privacy-first design principles and security practices.
 
 ## Privacy Principles
 
-- **No sensitive paths written to disk** — user data is session-only when possible
+- **Paths persisted to `app.ini`** — save-folder and backup-root paths survive
+  sessions; may contain the system username. Plain text, user can delete at will.
 - **No scanning of user profiles or system directories** beyond the current user
 - **All logged paths sanitized** to strip user-identifiable prefixes
-- **User consent tracked via sentinel file**, not a config file with user data
+- **Disclaimer consent tracked via sentinel file** alongside `app.ini`
 
 ## Input Handling
 

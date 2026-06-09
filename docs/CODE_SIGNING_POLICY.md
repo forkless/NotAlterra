@@ -32,23 +32,24 @@ the project's GPG key.
 
 ## Privacy
 
-NotAlterra does not collect, transmit, or store any personal user data.
-The application runs entirely offline:
+NotAlterra does not collect or transmit any personal user data — it has
+no network access, no telemetry, and no analytics.  The application runs
+entirely offline:
 
 - No telemetry, no analytics, no crash reporters.
 - No network requests — the binary never opens a socket.
-- All configuration is stored locally in `config.ini` alongside the
-  executable.
+- Configuration is stored locally in `app.ini` under the platform config
+  directory (e.g. `%LOCALAPPDATA%\NotAlterra\config\app.ini`).
 
-The only potentially identifying information stored is the game's
-save-folder path in `config.ini`, which includes the current Windows
-username.  This path never leaves the local machine — it is read once on
-startup and used exclusively to locate saves and configuration files.
+The `app.ini` file stores your save-folder path and backup root — the
+minimum needed to avoid re-entering them each session.  These paths may
+include the current system username (e.g. `C:\Users\jane\...`).  This
+information never leaves the local machine.  The file is plain text and
+can be inspected or deleted at any time.
 
-Because no data is collected or transmitted, there is nothing to share,
-sell, or expose.  This section serves as a safe-harbor statement:
-NotAlterra is designed to respect user privacy by collecting nothing at
-all.
+Because no data is transmitted, there is nothing to share, sell, or
+expose.  This section serves as a safe-harbor statement: NotAlterra is
+designed to respect user privacy by never sending data anywhere.
 
 ## Signing
 > **Status: pending certification.**  No binaries have been signed by
