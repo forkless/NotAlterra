@@ -43,6 +43,7 @@ After CI completes:
 
 - Commit with `--no-gpg-sign` (avoids GPG passphrase hang in non-interactive terminals)
 - **Sign once.** Wait for CI to go green on the unsigned commit, **then** amend with `--gpg-sign` + force-push. Do not amend between CI runs — each amend creates a new SHA, which triggers a new CI run and leaves stale Pages deployments that block the next run.
+- **Passphrase typo protection.** Run `git commit --amend --gpg-sign --no-edit` **alone first**. If the passphrase is wrong, only that command fails — the force-push, tag, and push don't run on a broken state. Verify with `git verify-commit HEAD` before proceeding with the remaining commands.
 - Normal push for fast-forward commits
 - `--force-with-lease` for amended commits or tag refreshes
 - **Start from a clean tag.** Before re-tagging, always delete the old tag locally AND remotely (`git tag -d v0.x.y && git push --delete origin v0.x.y`). If the old tag still exists, `git tag -s` will fail with "tag already exists" and you'll end up with a tag pointing to the wrong commit.
