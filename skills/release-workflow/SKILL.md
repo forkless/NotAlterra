@@ -45,6 +45,7 @@ After CI completes:
 - **Sign once.** Wait for CI to go green on the unsigned commit, **then** amend with `--gpg-sign` + force-push. Do not amend between CI runs — each amend creates a new SHA, which triggers a new CI run and leaves stale Pages deployments that block the next run.
 - Normal push for fast-forward commits
 - `--force-with-lease` for amended commits or tag refreshes
+- **Start from a clean tag.** Before re-tagging, always delete the old tag locally AND remotely (`git tag -d v0.x.y && git push --delete origin v0.x.y`). If the old tag still exists, `git tag -s` will fail with "tag already exists" and you'll end up with a tag pointing to the wrong commit.
 - If force-pushing, delete old tag and re-tag after the new commit lands
 - Tag once, push once. Re-signing an existing tag pushes a new SHA and triggers another CI run with the same deployment conflict risk.
 
