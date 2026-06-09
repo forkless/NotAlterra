@@ -24,7 +24,7 @@ What happened?  What did you expect to happen instead?
 ### Environment
 
 - **OS**: (e.g. Windows 11, Ubuntu 24.04, Steam Deck)
-- **NotAlterra version**: (shown in the title bar, e.g. v0.4.1)
+- **NotAlterra version**: (shown in the title bar, e.g. v0.4.2)
 - **Subnautica 2 install**: (Steam, Xbox, Epic, custom)
 
 ### Logs
