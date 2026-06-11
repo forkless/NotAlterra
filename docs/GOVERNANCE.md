@@ -81,6 +81,9 @@ not published. The maintainer tests the draft binaries before publishing.
 > tagged release. The `.intoto.jsonl` file is included with the
 > binaries. No configuration needed.
 
+> CodeQL static analysis is enabled on every push and pull request.
+> Alerts are reviewed before release. Currently zero open alerts.
+
 Before signing a release tag, the maintainer verifies:
 
 - [ ] Impact analysis completed — all call sites for new/changed functions identified and updated
