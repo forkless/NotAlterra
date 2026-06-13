@@ -214,3 +214,34 @@ to find it. This separation is standard convention.
 **Plain text, user-controlled** — `app.ini` is a simple key=value file.
 Users can inspect or delete it at any time. No binary format, no
 registry, no opaque storage.
+
+---
+
+## No CLI Flags for Automation (v0.4.3 → v0.5.0)
+
+### Problem
+The v0.4.0 roadmap listed CLI flags (`--backup`, `--extract`, `--inspect`,
+`--list`) as a planned feature. These would allow scripting and cron-driven
+backups without the TUI.
+
+### Decision
+Removed from the roadmap. Will not implement.
+
+### Rationale
+
+**TUI is the feature.** The file picker with live metadata preview, split
+layout, pip navigation, and archive integrity checks IS the interface.
+Dumping raw metadata to stdout or parsing command-line flags for a
+non-interactive backup loses all the value the tool provides.
+
+**No demand.** The tool serves a single user (you). You interact with it
+through the TUI. There is no automation use case driving this feature.
+
+**Overengineered for scope.** Adding CLI parsing, non-interactive modes,
+and a separate output formatter would nearly double the surface area for
+a feature neither the maintainer nor any hypothetical user would use.
+
+**Previous error:** The CLI flags were carried over as an assumption from
+"every CLI tool should have flags" without questioning whether they serve
+the tool's actual purpose. They don't. This decision documents that
+realization.
