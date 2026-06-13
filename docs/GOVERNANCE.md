@@ -12,7 +12,7 @@ maintainer becomes unavailable.
 | Code review | All changes pass through CI (`cargo check`, `cargo test`, `cargo doc`). Human review is performed by the maintainer before signing. |
 | Release | Signed GPG tag by the maintainer. No automated tag creation. CI builds, packages, and attaches provenance. |
 | Policy documents | Maintainer drafts. Significant changes are committed with justification in the commit message. |
-| Security issues | Reported via email. Patched within 48 hours. Disclosed publicly after patch release. |
+| Security issues | Reported via email. Patched within 14 days for serious issues, 90 days for standard. Disclosed publicly after patch release. |
 
 ## Maintainer
 
