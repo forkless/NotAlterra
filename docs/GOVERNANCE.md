@@ -83,6 +83,10 @@ not published. The maintainer tests the draft binaries before publishing.
 
 > CodeQL static analysis is enabled on every push and pull request.
 > Alerts are reviewed before release. Currently zero open alerts.
+>
+> An SBOM (CycloneDX JSON) is generated during every tagged release
+> and included alongside the binaries. It lists every crate in the
+> dependency tree, versions, and licenses.
 
 Before signing a release tag, the maintainer verifies:
 
