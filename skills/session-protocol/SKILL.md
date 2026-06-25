@@ -43,3 +43,7 @@ assuming a CSS specificity problem.
    Build + test + lint before declaring done.
 4. **Draft release cycle** — commit → push → tag → CI builds draft →
    user tests → publish. Never ship without draft testing.
+5. **`[skip ci]` on trivial commits** — changelog, governance, documentation-only
+   commits skip the full CI `check` run. Include `[skip ci]` in the commit
+   message to save CI minutes on housekeeping changes. Omit for any commit
+   that touches `Cargo.toml`, `Cargo.lock`, `deny.toml`, or source files.

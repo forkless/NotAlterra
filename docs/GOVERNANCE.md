@@ -63,6 +63,9 @@ the community:
 
 - GPG key expiration (checked quarterly).
 - CI pipeline is functional (every commit push triggers it).
+- `[skip ci]` is used for trivial commits (changelog, governance, docs-only).
+  Touching `Cargo.toml`, `Cargo.lock`, `deny.toml`, or source files must
+  always run full CI.
 - Backup of repository and signing subkey exists in offline storage.
 
 ## Code of Conduct
