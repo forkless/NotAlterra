@@ -56,6 +56,6 @@ designed to respect user privacy by never sending data anywhere.
 > SignPath yet.  This policy exists for transparency and privacy
 > documentation while the project prepares for certification.
 
-Only binaries produced by the official CI runner from the `master`
+Only binaries produced by the official CI runner from the `main`
 branch will be submitted to SignPath for signing.  Manual or off-CI
 builds are never shipped as signed releases.
